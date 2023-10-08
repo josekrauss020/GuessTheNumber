@@ -19,8 +19,15 @@ int AleatoryNumberGenerator()
 
 int ReceivePlayerNumber(int AleatoryNumber)
 {
-    Console.WriteLine("terceira função:\n");
+    
     Console.WriteLine($"{AleatoryNumber}");
+    Console.Write("Insert a Number between 1 and 100: ");
+    string PlayerNumber = Console.ReadLine();
+    Console.WriteLine(PlayerNumber);
+    if(AleatoryNumber == int.Parse(PlayerNumber))
+    {
+        Console.WriteLine("You Win!");
+    }
     return 0;
 }
 
