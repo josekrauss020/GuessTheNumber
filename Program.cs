@@ -1,10 +1,9 @@
 ﻿
 void main()
 {
-    Console.WriteLine("Bem vindo ao jogo NumberGuesser");
-    Console.WriteLine("O Numero pode ser entre 1 e 100\n");
+    Console.WriteLine("Welcome to the game NumberGuesser");
+    Console.WriteLine("Choose a number between 1 and 100\n");
     int NumberToGuess= AleatoryNumberGenerator();
-    //Console.WriteLine(NumberToGuess);
     ReceivePlayerNumber(NumberToGuess);
 
 }
@@ -12,21 +11,37 @@ void main()
 int AleatoryNumberGenerator()
 {
     Random NumAleatory = new();
-    int valorInteiro = NumAleatory.Next(1,101);
-    //Console.WriteLine(valorInteiro);
-    return valorInteiro;
+    int valueInt = NumAleatory.Next(1,101);
+    return valueInt;
  }
 
 int ReceivePlayerNumber(int AleatoryNumber)
 {
     
-    Console.WriteLine($"{AleatoryNumber}");
+   // Console.WriteLine($"{AleatoryNumber}");
     Console.Write("Insert a Number between 1 and 100: ");
-    string PlayerNumber = Console.ReadLine();
+    string PlayerNumber = Console.ReadLine()!; // "!" https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/compiler-messages/nullable-warnings#possible-null-assigned-to-a-nonnullable-reference
     Console.WriteLine(PlayerNumber);
     if(AleatoryNumber == int.Parse(PlayerNumber))
     {
         Console.WriteLine("You Win!");
+    }
+    else
+    {
+        int i = 0;
+        do
+        {
+            Console.WriteLine("Try again");
+            PlayerNumber = Console.ReadLine()!;
+            if(AleatoryNumber == int.Parse(PlayerNumber))
+            {
+                Console.WriteLine("You Win!");
+                return 0;
+            }
+            else { i++; }
+        }
+        while(i<5);
+        Console.WriteLine("You Lose!");
     }
     return 0;
 }
